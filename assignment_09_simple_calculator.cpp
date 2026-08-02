@@ -62,14 +62,172 @@
 // - Use fixed and setprecision(2) to display results to 2 decimal places.
 // - Handle invalid menu choices gracefully.
 // - For exponentiation use a loop or the pow() function from <cmath>.
-//
 
-// =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
-// =============================================================================
+
 
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 using namespace std;
 
+// =========================================================================
+// Function to display the menu
+// =========================================================================
+void displayMenu() {
+    cout << "\n============================\n";
+    cout << "     SIMPLE CALCULATOR\n";
+    cout << "============================\n";
+    cout << "1. Addition\n";
+    cout << "2. Subtraction\n";
+    cout << "3. Multiplication\n";
+    cout << "4. Division\n";
+    cout << "5. Modulus\n";
+    cout << "6. Exponentiation\n";
+    cout << "7. Quit\n";
+    cout << "Select an operation (1-7): ";
+}
+
+// =========================================================================
+// Addition Function
+// =========================================================================
+void addition() {
+    double num1, num2;
+    cout << "Enter first number : ";
+    cin >> num1;
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    double result = num1 + num2;
+    cout << "Result: " << fixed << setprecision(2) 
+         << num1 << " + " << num2 << " = " << result << endl;
+}
+
+// =========================================================================
+// Subtraction Function
+// =========================================================================
+void subtraction() {
+    double num1, num2;
+    cout << "Enter first number : ";
+    cin >> num1;
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    double result = num1 - num2;
+    cout << "Result: " << fixed << setprecision(2) 
+         << num1 << " - " << num2 << " = " << result << endl;
+}
+
+// =========================================================================
+// Multiplication Function
+// =========================================================================
+void multiplication() {
+    double num1, num2;
+    cout << "Enter first number : ";
+    cin >> num1;
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    double result = num1 * num2;
+    cout << "Result: " << fixed << setprecision(2) 
+         << num1 << " * " << num2 << " = " << result << endl;
+}
+
+// =========================================================================
+// Division Function (with zero division check)
+// =========================================================================
+void division() {
+    double num1, num2;
+    cout << "Enter first number : ";
+    cin >> num1;
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    // Check for division by zero
+    if (num2 == 0) {
+        cout << "Error: Cannot divide by zero." << endl;
+        return;
+    }
+    
+    double result = num1 / num2;
+    cout << "Result: " << fixed << setprecision(2) 
+         << num1 << " / " << num2 << " = " << result << endl;
+}
+
+// =========================================================================
+// Modulus Operation Function
+// =========================================================================
+void modulusOperation() {
+    int num1, num2;
+    cout << "Enter first number : ";
+    cin >> num1;
+    cout << "Enter second number: ";
+    cin >> num2;
+    
+    // Check for modulus by zero
+    if (num2 == 0) {
+        cout << "Error: Cannot perform modulus with zero." << endl;
+        return;
+    }
+    
+    int result = num1 % num2;
+    cout << "Result: " << num1 << " % " << num2 << " = " << result << endl;
+}
+
+// =========================================================================
+// Exponentiation Function
+// =========================================================================
+void exponentiation() {
+    double base;
+    int exponent;
+    cout << "Enter base number: ";
+    cin >> base;
+    cout << "Enter exponent: ";
+    cin >> exponent;
+    
+    double result = pow(base, exponent);
+    cout << "Result: " << fixed << setprecision(2) 
+         << base << " ^ " << exponent << " = " << result << endl;
+}
+
+// =========================================================================
+// Main Function
+// =========================================================================
+int main() {
+    int choice;
+    
+    cout << "Welcome to the Simple Calculator!" << endl;
+    
+    // Main loop - keep running until user chooses to quit
+    while (true) {
+        displayMenu();
+        cin >> choice;
+        
+        switch (choice) {
+            case 1:
+                addition();
+                break;
+            case 2:
+                subtraction();
+                break;
+            case 3:
+                multiplication();
+                break;
+            case 4:
+                division();
+                break;
+            case 5:
+                modulusOperation();
+                break;
+            case 6:
+                exponentiation();
+                break;
+            case 7:
+                cout << "Goodbye!" << endl;
+                return 0;  // Exit the program
+            default:
+                cout << "Error: Invalid choice. Please select 1-7." << endl;
+        }
+    }
+    
+    return 0;
+}
